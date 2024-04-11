@@ -1,5 +1,5 @@
 import React from 'react';
-import AddToCartButton from './AddToCartButton'; // Import AddToCartButton component
+import AddToCartButton from './AddtoCartButton'; // Import AddToCartButton component
 
 const Product = ({ id, name, description, price, addToCart }) => {
   return (
