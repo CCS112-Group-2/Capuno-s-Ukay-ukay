@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-
+//
 const AddToCartButton = ({ handleAddToCart, product, cartItems }) => {
   const [showModal, setShowModal] = useState(false);
   const [quantity, setQuantity] = useState(1);
