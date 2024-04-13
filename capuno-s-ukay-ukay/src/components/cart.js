@@ -1,17 +1,22 @@
 import React from 'react';
+import { ListGroup } from 'react-bootstrap'; // Import ListGroup component
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, removeFromCart }) => {
   return (
     <div className="cart">
       <h2>Cart</h2>
-      <ul>
+      <ListGroup>
         {cartItems.map((item) => (
-          <li key={item.id}>
+          <ListGroup.Item key={item.id}>
             <p>{item.name}</p>
             <p>Quantity: {item.quantity}</p>
-          </li>
+            <p>Price: {item.price}</p>
+            <Button variant="danger" size="sm" onClick={() => removeFromCart(item)}>
+              Remove
+            </Button>
+          </ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     </div>
   );
 };
