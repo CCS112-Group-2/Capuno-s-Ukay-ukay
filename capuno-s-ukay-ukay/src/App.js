@@ -59,16 +59,12 @@ function App() {
           <li class="nav-item">
             <a class="nav-link" href="/shopping">Shopping</a>
           </li>
-          <li class="nav-item dropdown">
-            <a className="nav-link" href="/cart">View Cart</a>
-          </li>
         </ul>
       </div>
     </nav>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/shopping" element={<Shopping products={products} handleAddToCart={handleAddToCart} cartItems={cartItems} />}/>
-          <Route path="/cart" element={<CartSummary cartItems={cartItems} removeFromCart={removeFromCart} />} />
         </Routes>
       </Router>
     </div>
