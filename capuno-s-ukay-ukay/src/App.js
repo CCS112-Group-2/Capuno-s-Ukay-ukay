@@ -46,7 +46,7 @@ function App() {
     <div>
       <Router>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#/Home"><h1>Capuno's Ukay-ukay</h1></a>
+      <a class="navbar-brand" href="/home"><h1>Capuno's Ukay-ukay</h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -54,7 +54,7 @@ function App() {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-          <a className="nav-link" href="/">Home</a>
+          <a className="nav-link" href="/home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/shopping">Shopping</a>
@@ -63,7 +63,7 @@ function App() {
       </div>
     </nav>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/shopping" element={<Shopping products={products} handleAddToCart={handleAddToCart} cartItems={cartItems} />}/>
         </Routes>
       </Router>
