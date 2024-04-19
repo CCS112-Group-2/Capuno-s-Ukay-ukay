@@ -50,3 +50,4 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
 };
 
 export default CartSummary;
+
