@@ -11,7 +11,7 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
   };
 
   const handleRemove = (index) => {
-    // Call removeFromCart function with the index of the item to remove
+    // Invoke the removeFromCart function with the index of the item to remove
     removeFromCart(index);
   };
 
@@ -38,6 +38,7 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
                   <td>{item.price}</td>
                   <td>{item.quantity}</td>
                   <td>
+                    {/* Use an arrow function to pass index to handleRemove */}
                     <button onClick={() => handleRemove(index)}>Remove</button>
                   </td>
                 </tr>
