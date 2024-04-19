@@ -11,11 +11,13 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
     return totalPrice.toFixed(2);
   };
 
-  const removeItemFromCart = (itemId) => {
+  const handleRemoveItem = (itemId) => {
+    const updatedCartItems = cartItems.filter(item => item.id !== itemId);
+    console.log('Item ID to Remove:', itemId);
+    console.log('Updated Cart Items:', updatedCartItems);
+
     if (typeof removeFromCart === 'function') {
-      const updatedCartItems = cartItems.filter(item => item.id !== itemId);
-      console.log('Updated Cart Items:', updatedCartItems); // Log updated cart items
-      removeFromCart(updatedCartItems);
+      removeFromCart(updatedCartItems); // Call removeFromCart function with updated cart items
     } else {
       console.error('removeFromCart is not a function');
     }
@@ -43,7 +45,7 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
                 <td>{item.price}</td>
                 <td>{item.quantity}</td>
                 <td>
-                  <button onClick={() => removeItemFromCart(item.id)}>Remove</button>
+                  <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
                 </td>
               </tr>
             ))}
@@ -68,4 +70,6 @@ CartSummary.propTypes = {
 };
 
 export default CartSummary;
+
+
 

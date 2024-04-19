@@ -1,29 +1,29 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Product from './components/Product';
 import AddToCartButton from './components/AddToCartButton'; // Import AddToCartButton component
 import CartSummary from './components/CartSummary';
 import { Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
   const handleAddToCart = (product) => {
-    const existingItemIndex = cartItems.findIndex((item) => item.name === product.name);
-    if (existingItemIndex !== -1) {
-      const updatedCartItems = [...cartItems];
-      updatedCartItems[existingItemIndex] = {
-        ...updatedCartItems[existingItemIndex],
-        quantity: updatedCartItems[existingItemIndex].quantity + product.quantity,
-        
-      };console.log(product.quantity);
+    const existingItem = cartItems.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      const updatedCartItems = cartItems.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
+      );
       setCartItems(updatedCartItems);
     } else {
-      setCartItems([...cartItems, product]);
+      setCartItems([...cartItems, { ...product, quantity: product.quantity }]);
     }
-  
+  };
+
+  const removeFromCart = (updatedCartItems) => {
+    setCartItems(updatedCartItems);
   };
 
   const products = [
@@ -41,21 +41,21 @@ function App() {
 
   return (
     <div className="app-container">
-    <div className="products-container">
-      <h1>Capuno's Ukay-ukay</h1>
-      <div className="product-list">
-        {products.map((product, index) => (
-          <div key={index} className="product-item">
-            <Product name={product.name} description={product.description} price={product.price} />
-            <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
-          </div>
-        ))}
+      <div className="products-container">
+        <h1>Capuno's Ukay-ukay</h1>
+        <div className="product-list">
+          {products.map((product) => (
+            <div key={product.id} className="product-item">
+              <Product name={product.name} description={product.description} price={product.price} />
+              <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="cart-summary-container">
+        <CartSummary cartItems={cartItems} removeFromCart={removeFromCart} />
       </div>
     </div>
-    <div className="cart-summary-container">
-      <CartSummary cartItems={cartItems} />
-    </div>
-  </div>
   );
 }
 
