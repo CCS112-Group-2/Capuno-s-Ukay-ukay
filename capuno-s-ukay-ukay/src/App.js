@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import Product from './components/Product';
-import AddToCartButton from './components/AddToCartButton'; // Import AddToCartButton component
-import CartSummary from './components/CartSummary';
-import { Button } from 'react-bootstrap';
-import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AddToCartButton from './components/AddtoCartButton';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import HomePage from './components/HomePage';
 import Shopping from './components/Shopping';
+import ViewCart from './components/ViewCart';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './assets/logo.png'; // Import your logo image
+import { Container, Row, Col } from 'react-bootstrap';
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -25,7 +27,8 @@ function App() {
     }
   };
 
-  const removeFromCart = (updatedCartItems) => {
+  const handleRemoveFromCart = (productId) => {
+    const updatedCartItems = cartItems.filter(item => item.id !== productId);
     setCartItems(updatedCartItems);
   };
 
@@ -45,26 +48,29 @@ function App() {
   return (
     <div>
       <Router>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/home"><h1>Capuno's Ukay-ukay</h1></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <Link className="navbar-brand" to="/home"><Col xs={12} className="text-center">
+          <img src={logo} alt="Company Logo" className="rounded-circle" style={{ maxWidth: '100px', maxHeight: '100px' }} />
+        </Col></Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-          <a className="nav-link" href="/home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/shopping">Shopping</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/shopping">Proceed to Shopping</Link> {/* Use Link instead of <a> */}
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/viewcart">My Cart</Link> {/* Use Link instead of <a> */}
+              </li>
+            </ul>
+          </div>
+        </nav>
         <Routes>
           <Route path="/home" element={<HomePage />} />
-          <Route path="/shopping" element={<Shopping products={products} handleAddToCart={handleAddToCart} cartItems={cartItems} />}/>
+          <Route path="/shopping" element={<Shopping products={products} handleAddToCart={handleAddToCart} cartItems={cartItems} />} />
+          <Route path="/viewcart" element={<ViewCart cartItems={cartItems} handleRemoveFromCart={handleRemoveFromCart} />} />
         </Routes>
       </Router>
     </div>

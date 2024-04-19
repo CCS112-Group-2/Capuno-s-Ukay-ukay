@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Product from './Product';
-import AddToCartButton from './AddToCartButton';
-import CartSummary from './CartSummary';
-import { Card, Button } from 'react-bootstrap';
+import AddToCartButton from './AddtoCartButton';
+import { Card } from 'react-bootstrap';
 
 const Shopping = ({ products, handleAddToCart, cartItems }) => {
-  const [showCart, setShowCart] = useState(false);
-
-  const toggleCart = () => {
-    setShowCart(!showCart);
-  };
-
   return (
     <div>
       <h2>Shopping</h2>
@@ -27,8 +20,6 @@ const Shopping = ({ products, handleAddToCart, cartItems }) => {
           ))}
         </div>
       </div>
-      <Button variant="primary" onClick={toggleCart}>View Cart</Button>
-      {showCart && <CartSummary cartItems={cartItems} />}
     </div>
   );
 };
