@@ -4,6 +4,9 @@ import Product from './components/Product';
 import AddToCartButton from './components/AddToCartButton'; // Import AddToCartButton component
 import CartSummary from './components/CartSummary';
 import { Button } from 'react-bootstrap';
+import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from './components/HomePage';
+import Shopping from './components/Shopping';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -41,18 +44,33 @@ function App() {
 
   return (
     <div>
-      <div className="form-control quantity-input">
-        <h1>Capuno's Ukay-ukay</h1>
-        <div className="form-control quantity-input">
-          {products.map((product) => (
-            <div key={product.id}  className="product-item" >
-              <Product name={product.name} description={product.description} price={product.price} />
-              <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
-            </div>
-          ))}
-        </div>
+      <Router>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#/Home"><h1>Capuno's Ukay-ukay</h1></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+          <a className="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/shopping">Shopping</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a className="nav-link" href="/cart">View Cart</a>
+          </li>
+        </ul>
       </div>
-      <CartSummary cartItems={cartItems} removeFromCart={removeFromCart} />
+    </nav>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shopping" element={<Shopping products={products} handleAddToCart={handleAddToCart} cartItems={cartItems} />}/>
+          <Route path="/cart" element={<CartSummary cartItems={cartItems} removeFromCart={removeFromCart} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
