@@ -40,6 +40,7 @@ function App() {
   ];
 
   return (
+<<<<<<< HEAD
     <div className="app-container">
       <div className="products-container">
         <h1>Capuno's Ukay-ukay</h1>
@@ -56,6 +57,23 @@ function App() {
         <CartSummary cartItems={cartItems} removeFromCart={removeFromCart} />
       </div>
     </div>
+=======
+    <div>
+    <div className="products-container">
+      <h1>Capuno's Ukay-ukay</h1>
+      <div className="product-list">
+        {products.map((product, index) => (
+          <div key={index} className="product-item">
+            <Product name={product.name} description={product.description} price={product.price} />
+            <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
+          </div>
+        ))}
+      </div>
+    </div>
+      <CartSummary cartItems={cartItems} />
+  </div>
+  
+>>>>>>> 60a42499ad372f1ad58b88a35e649509566d30cc
   );
 }
 
