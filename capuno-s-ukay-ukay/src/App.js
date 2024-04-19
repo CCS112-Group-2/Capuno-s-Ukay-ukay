@@ -40,7 +40,7 @@ function App() {
   ];
 
   return (
-    <div className="app-container">
+    <div>
       <div className="products-container">
         <h1>Capuno's Ukay-ukay</h1>
         <div className="product-list">
@@ -52,9 +52,7 @@ function App() {
           ))}
         </div>
       </div>
-      <div className="cart-summary-container">
-        <CartSummary cartItems={cartItems} removeFromCart={removeFromCart} />
-      </div>
+      <CartSummary cartItems={cartItems} removeFromCart={removeFromCart} />
     </div>
   );
 }

@@ -11,10 +11,14 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
     return totalPrice.toFixed(2);
   };
 
-  const removeItemFromCart = (itemId) => {
+  const handleRemoveItem = (itemId) => {
+    const updatedCartItems = cartItems.filter(item => item.id !== itemId);
+    console.log('Item ID to Remove:', itemId);
+    console.log('Updated Cart Items:', updatedCartItems);
+
+
+    // Call removeFromCart function with updated cart items
     if (typeof removeFromCart === 'function') {
-      const updatedCartItems = cartItems.filter(item => item.id !== itemId);
-      console.log('Updated Cart Items:', updatedCartItems); // Log updated cart items
       removeFromCart(updatedCartItems);
     } else {
       console.error('removeFromCart is not a function');
@@ -34,15 +38,17 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
               <b class="col-sm">Name</b>
               <b class="col-sm">Price</b>
               <b class="col-sm">Quantity</b>
+              <b class="col-sm">Remove</b>
             </div>
             </li>
             <ul class="list-group container"></ul>
             {cartItems.map((item, index) => (
               <li class="list-group-item">
                 <div class="row">
-                  <div class="col-sm-4 float-left">{item.name}</div>
-                  <div class="col-sm-4 float-left">{item.price}</div>
-                  <div class="col-sm-4 float-left">{item.quantity}</div>
+                  <div class="col-sm-3">{item.name}</div>
+                  <div class="col-sm-3">{item.price}</div>
+                  <div class="col-sm-3">{item.quantity}</div>
+                  <button type="button" class="col-sm-3 btn btn-danger btn-sm" onClick={() => handleRemoveItem(item.id)}>Remove</button>
                 </div>
               </li>
             ))}
