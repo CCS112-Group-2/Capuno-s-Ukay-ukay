@@ -57,7 +57,7 @@ const AddToCartButton = ({ handleAddToCart, product, cartItems }) => {
           <p>Price: {product.price}</p>
           <p>Quantity:</p>
           <Button variant="outline-secondary" onClick={handleDecrement}>-</Button>
-          <input type="number" value={quantity} min="1" onChange={handleQuantityChange} />
+          <input type="number" className="form-control quantity-input" value={quantity} min="1" onChange={handleQuantityChange} />
           <Button variant="outline-secondary" onClick={handleIncrement}>+</Button>
         </Modal.Body>
         <Modal.Footer>

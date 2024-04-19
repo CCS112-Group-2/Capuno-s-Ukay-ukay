@@ -14,10 +14,10 @@ const Shopping = ({ products, handleAddToCart, cartItems }) => {
     <div>
       <h2>Shopping</h2>
       
-      <div>
-        <div>
+      <div className="products-container">
+        <div className="product-list">
           {products.map((product) => (
-            <div key={product.id}>
+            <div key={product.id} className="product-item">
               <Product name={product.name} description={product.description} price={product.price} />
               <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
             </div>

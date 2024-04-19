@@ -45,19 +45,19 @@ function App() {
   return (
     <div>
       <Router>
-      <nav>
-      <a href="#/Home"><h1>Capuno's Ukay-ukay</h1></a>
-      <button data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span></span>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#/Home"><h1>Capuno's Ukay-ukay</h1></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div id="navbarSupportedContent">
-        <ul>
-          <li>
-          <a href="/">Home</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+          <a className="nav-link" href="/">Home</a>
           </li>
-          <li>
-            <a href="/shopping">Shopping</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/shopping">Shopping</a>
           </li>
         </ul>
       </div>
