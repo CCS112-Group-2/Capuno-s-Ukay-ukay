@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CartSummary = ({ cartItems, removeFromCart }) => {
   const calculateTotalPrice = () => {
@@ -12,9 +13,8 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
 
   const removeItemFromCart = (itemId) => {
     if (typeof removeFromCart === 'function') {
-      // Filter out the item to be removed from cartItems
       const updatedCartItems = cartItems.filter(item => item.id !== itemId);
-      // Call removeFromCart function with updated cart items
+      console.log('Updated Cart Items:', updatedCartItems); // Log updated cart items
       removeFromCart(updatedCartItems);
     } else {
       console.error('removeFromCart is not a function');
@@ -67,6 +67,18 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
                 // <td>{item.quantity}</td>
                 //   <button onClick={() => handleRemoveItem(index)}>Remove</button>
   );
+};
+
+CartSummary.propTypes = {
+  cartItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      quantity: PropTypes.number.isRequired
+    })
+  ).isRequired,
+  removeFromCart: PropTypes.func.isRequired
 };
 
 export default CartSummary;
