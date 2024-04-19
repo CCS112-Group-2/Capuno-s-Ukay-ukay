@@ -10,11 +10,9 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
     return totalPrice.toFixed(2);
   };
 
-  const handleRemoveItem = (index) => {
-    // Create a copy of cartItems array
-    const updatedCartItems = [...cartItems];
-    // Remove the item at the specified index
-    updatedCartItems.splice(index, 1);
+  const handleRemoveItem = (itemId) => {
+    // Filter out the item to be removed from cartItems
+    const updatedCartItems = cartItems.filter(item => item.id !== itemId);
     // Call removeFromCart function with updated cart items
     removeFromCart(updatedCartItems);
   };
@@ -35,14 +33,13 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
             </tr>
           </thead>
           <tbody>
-            {cartItems.map((item, index) => (
+            {cartItems.map((item) => (
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>{item.price}</td>
                 <td>{item.quantity}</td>
                 <td>
-                  {/* Pass index to handleRemoveItem when button is clicked */}
-                  <button onClick={() => handleRemoveItem(index)}>Remove</button>
+                  <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
                 </td>
               </tr>
             ))}
