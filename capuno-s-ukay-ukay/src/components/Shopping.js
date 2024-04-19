@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Product from './Product';
 import AddToCartButton from './AddToCartButton';
 import CartSummary from './CartSummary';
+import { Card, Button } from 'react-bootstrap';
 
 const Shopping = ({ products, handleAddToCart, cartItems }) => {
   const [showCart, setShowCart] = useState(false);
@@ -17,14 +18,16 @@ const Shopping = ({ products, handleAddToCart, cartItems }) => {
       <div className="products-container">
         <div className="product-list">
           {products.map((product) => (
-            <div key={product.id} className="product-item">
-              <Product name={product.name} description={product.description} price={product.price} />
-              <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
-            </div>
+            <Card key={product.id} className="product-item">
+              <Card.Body>
+                <Product name={product.name} description={product.description} price={product.price} />
+                <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
+              </Card.Body>
+            </Card>
           ))}
         </div>
       </div>
-      <button onClick={toggleCart}>View Cart</button>
+      <Button variant="primary" onClick={toggleCart}>View Cart</Button>
       {showCart && <CartSummary cartItems={cartItems} />}
     </div>
   );
