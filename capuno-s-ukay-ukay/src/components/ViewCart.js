@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import CartSummary from './CartSummary';
 
 const ViewCart = () => {
+  // Initial cart state with sample items
   const [cartItems, setCartItems] = useState([
-    { name: 'Product A', price: '$10.00', quantity: 2 },
-    { name: 'Product B', price: '$20.00', quantity: 1 }
+    { id: 1, name: 'Product A', price: '10.00', quantity: 2 },
+    { id: 2, name: 'Product B', price: '20.00', quantity: 1 }
   ]);
 
-  const removeFromCart = (indexToRemove) => {
-    setCartItems(prevItems => {
-      return prevItems.filter((item, index) => index !== indexToRemove);
-    });
+  // Function to remove item from cart based on index
+  const removeFromCart = (index) => {
+    const updatedCart = [...cartItems];
+    updatedCart.splice(index, 1); // Remove item at specified index
+    setCartItems(updatedCart); // Update cart state
   };
 
   return (
@@ -22,3 +24,4 @@ const ViewCart = () => {
 };
 
 export default ViewCart;
+

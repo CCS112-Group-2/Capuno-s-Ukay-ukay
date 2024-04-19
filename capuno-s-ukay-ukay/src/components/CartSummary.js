@@ -4,14 +4,14 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     cartItems.forEach(item => {
-      const numericPrice = parseFloat(item.price.replace(/[^0-9.-]+/g,""));
+      const numericPrice = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
       totalPrice += numericPrice * item.quantity;
     });
     return totalPrice.toFixed(2);
   };
 
-  const handleRemove = (index) => {
-    // Invoke the removeFromCart function with the index of the item to remove
+  const handleRemoveItem = (index) => {
+    // Call the removeFromCart function with the index of the item to be removed
     removeFromCart(index);
   };
 
@@ -21,35 +21,33 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
-        <div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Actions</th>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((item, index) => (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.price}</td>
+                <td>{item.quantity}</td>
+                <td>
+                  <button onClick={() => handleRemoveItem(index)}>Remove</button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                  <td>{item.quantity}</td>
-                  <td>
-                    {/* Use an arrow function to pass index to handleRemove */}
-                    <button onClick={() => handleRemove(index)}>Remove</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p>Total Price: ${calculateTotalPrice()}</p>
-        </div>
+            ))}
+          </tbody>
+        </table>
       )}
+      <p>Total Price: ${calculateTotalPrice()}</p>
     </div>
   );
 };
 
 export default CartSummary;
+
