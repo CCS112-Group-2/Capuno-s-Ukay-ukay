@@ -11,10 +11,12 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
   };
 
   const handleRemoveItem = (index) => {
-    // Call removeFromCart function with the index of the item to remove
-    const updatedCartItems = [...cartItems]; // Create a copy of cartItems
-    updatedCartItems.splice(index, 1); // Remove the item at the specified index
-    CartSummary(updatedCartItems); // Call removeFromCart function to update cart state
+    // Create a copy of cartItems array
+    const updatedCartItems = [...cartItems];
+    // Remove the item at the specified index
+    updatedCartItems.splice(index, 1);
+    // Call removeFromCart function with updated cart items
+    removeFromCart(updatedCartItems);
   };
 
   return (
@@ -39,6 +41,7 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
                 <td>{item.price}</td>
                 <td>{item.quantity}</td>
                 <td>
+                  {/* Pass index to handleRemoveItem when button is clicked */}
                   <button onClick={() => handleRemoveItem(index)}>Remove</button>
                 </td>
               </tr>
