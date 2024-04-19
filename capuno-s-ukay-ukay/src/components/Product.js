@@ -3,8 +3,8 @@ import AddToCartButton from './AddToCartButton'; // Import AddToCartButton compo
 
 const Product = ({ id, name, description, price, addToCart }) => {
   return (
-    <div>
-        <div>
+    <div className="product-item">
+        <div className="product-card-body">
             <h3>{name}</h3>
             <p>{description}</p>
             <p>Price: {price}</p>

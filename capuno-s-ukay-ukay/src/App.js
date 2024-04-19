@@ -41,11 +41,11 @@ function App() {
 
   return (
     <div>
-      <div>
+      <div className="form-control quantity-input">
         <h1>Capuno's Ukay-ukay</h1>
-        <div>
+        <div className="form-control quantity-input">
           {products.map((product) => (
-            <div key={product.id} >
+            <div key={product.id}  className="product-item" >
               <Product name={product.name} description={product.description} price={product.price} />
               <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
             </div>
