@@ -1,5 +1,4 @@
 import React from 'react';
-import removeFromCart from './removeFromCart'; // Import the removeFromCart function
 
 const CartSummary = ({ cartItems, removeFromCart }) => {
   const calculateTotalPrice = () => {
@@ -12,10 +11,10 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
   };
 
   const handleRemoveItem = (index) => {
-    // Call the imported removeFromCart function
-    const updatedCartItems = removeFromCart(cartItems, index);
-    // Update the parent's cart state using removeFromCart prop
-    removeFromCart(updatedCartItems);
+    // Call removeFromCart function with the index of the item to remove
+    const updatedCartItems = [...cartItems]; // Create a copy of cartItems
+    updatedCartItems.splice(index, 1); // Remove the item at the specified index
+    removeFromCart(updatedCartItems); // Call removeFromCart function to update cart state
   };
 
   return (
