@@ -44,31 +44,31 @@ const AddToCartButton = ({ handleAddToCart, product, cartItems }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setShowModal(true)}>
-        Add to Cart
-      </Button>
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add to Cart</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h5>{product.name}</h5>
-          <p>{product.description}</p>
-          <p>Price: {product.price}</p>
-          <p>Quantity:</p>
-          <Button variant="outline-secondary" onClick={handleDecrement}>-</Button>
-          <input type="number" className="form-control quantity-input" value={quantity} min="1" onChange={handleQuantityChange} />
-          <Button variant="outline-secondary" onClick={handleIncrement}>+</Button>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleAddToCartClick}>
-            Add to Cart
-          </Button>
-        </Modal.Footer>
-      </Modal>
+    <Button variant="info" onClick={() => setShowModal(true)}>
+  Add to Cart
+</Button>
+<Modal show={showModal} onHide={() => setShowModal(false)}>
+  <Modal.Header closeButton>
+    <Modal.Title>Add to Cart</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <h5>{product.name}</h5>
+    <p>{product.description}</p>
+    <p>Price: {product.price}</p>
+    <p>Quantity:</p>
+    <Button variant="outline-info" onClick={handleDecrement}>-</Button>
+    <input type="number" className="form-control quantity-input" value={quantity} min="1" onChange={handleQuantityChange} />
+    <Button variant="outline-info" onClick={handleIncrement}>+</Button>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="info" onClick={() => setShowModal(false)}>
+      Close
+    </Button>
+    <Button variant="info" onClick={handleAddToCartClick}>
+      Add to Cart
+    </Button>
+  </Modal.Footer>
+</Modal>
     </>
   );
 };
