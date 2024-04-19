@@ -11,7 +11,7 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
   };
 
   const handleRemoveItem = (index) => {
-    // Call the removeFromCart function with the index of the item to be removed
+    // Call the parent's removeFromCart function with the index
     removeFromCart(index);
   };
 
@@ -32,7 +32,7 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
           </thead>
           <tbody>
             {cartItems.map((item, index) => (
-              <tr key={index}>
+              <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>{item.price}</td>
                 <td>{item.quantity}</td>
@@ -50,4 +50,3 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
 };
 
 export default CartSummary;
-
