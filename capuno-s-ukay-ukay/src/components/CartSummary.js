@@ -14,7 +14,7 @@ const CartSummary = ({ cartItems, removeFromCart }) => {
     // Call removeFromCart function with the index of the item to remove
     const updatedCartItems = [...cartItems]; // Create a copy of cartItems
     updatedCartItems.splice(index, 1); // Remove the item at the specified index
-    cart(updatedCartItems); // Call removeFromCart function to update cart state
+    CartSummary(updatedCartItems); // Call removeFromCart function to update cart state
   };
 
   return (
