@@ -41,11 +41,11 @@ function App() {
 
   return (
     <div>
-      <div className="products-container">
+      <div>
         <h1>Capuno's Ukay-ukay</h1>
-        <div className="product-list">
+        <div>
           {products.map((product) => (
-            <div key={product.id} className="product-item">
+            <div key={product.id} >
               <Product name={product.name} description={product.description} price={product.price} />
               <AddToCartButton product={product} handleAddToCart={handleAddToCart} cartItems={cartItems} />
             </div>

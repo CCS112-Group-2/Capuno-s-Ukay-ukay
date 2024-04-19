@@ -5,22 +5,22 @@ const ViewCart = ({ cartItems, handleRemoveItem }) => {
   return (
     <div>
       <h2>View Cart</h2>
-      <ul className="list-group container">
-        <li className="list-group-item justify-content-md-center">
-            <div className="row">
-                <b className="col-sm">Name</b>
-                <b className="col-sm">Price</b>
-                <b className="col-sm">Quantity</b>
-                <b className="col-sm">Remove</b>
+      <ul>
+        <li>
+            <div>
+                <b>Name</b>
+                <b>Price</b>
+                <b>Quantity</b>
+                <b>Remove</b>
             </div>
         </li>
         {cartItems.map((item) => (
-          <li className="list-group-item" key={item.id}>
-            <div className="row">
-              <div className="col-sm-3">{item.name}</div>
-              <div className="col-sm-3">{item.price}</div>
-              <div className="col-sm-3">{item.quantity}</div>
-              <button type="button" className="col-sm-3 btn btn-danger btn-sm" onClick={() => handleRemoveItem(item.id)}>Remove</button>
+          <li key={item.id}>
+            <div>
+              <div>{item.name}</div>
+              <div>{item.price}</div>
+              <div>{item.quantity}</div>
+              <button type="button" onClick={() => handleRemoveItem(item.id)}>Remove</button>
             </div>
           </li>
         ))}
