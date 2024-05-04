@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Checkout from './Checkout'; // Import the Checkout component
+import Checkout from './Checkout'; 
 
 const ViewCart = ({ cartItems, handleRemoveFromCart, handleCheckout }) => {
   const [shippingDetails, setShippingDetails] = useState({
@@ -9,7 +9,7 @@ const ViewCart = ({ cartItems, handleRemoveFromCart, handleCheckout }) => {
     email: ''
   });
 
-  const [showCheckout, setShowCheckout] = useState(false); // State to toggle Checkout component
+  const [showCheckout, setShowCheckout] = useState(false); 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,21 +27,21 @@ const ViewCart = ({ cartItems, handleRemoveFromCart, handleCheckout }) => {
 
   const handleCheckoutClick = () => {
     if (shippingDetails.name && shippingDetails.address && shippingDetails.email) {
-      setShowCheckout(true); // Show the Checkout component
+      setShowCheckout(true); 
     } else {
       alert('Please fill in all shipping details.');
     }
   };
 
   const handleConfirmCheckout = () => {
-    // Call handleCheckout function passed as a prop
+    
     handleCheckout({ shippingDetails, totalPrice: calculateTotalPrice(), cartItems });
   };
 
   return (
     <div>
       <center>
-        {!showCheckout ? ( // Render ViewCart or Checkout based on showCheckout state
+        {!showCheckout ? ( 
           <>
             {cartItems.length === 0 ? (
               <p>Your cart is empty</p>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Checkout = ({ shippingDetails, totalPrice, handleConfirmCheckout }) => {
   const handleConfirm = () => {
-    // You can perform additional validation here before confirming the checkout
+    
     handleConfirmCheckout();
   };
 
