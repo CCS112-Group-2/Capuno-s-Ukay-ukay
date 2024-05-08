@@ -95,7 +95,7 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
           <Checkout
             shippingDetails={shippingDetails}
             totalPrice={calculateTotalPrice()}
-            handleConfirmCheckout={handleConfirmCheckout} // Remove the extra curly braces
+            handleConfirmCheckout={handleConfirmCheckout} 
           />
         )}
       </center>
