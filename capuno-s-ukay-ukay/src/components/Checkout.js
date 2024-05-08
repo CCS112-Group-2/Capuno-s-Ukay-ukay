@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 const Checkout = ({ shippingDetails, totalPrice, handleConfirmCheckout }) => {
   const handleConfirm = () => {
-    
-    handleConfirmCheckout();
+    handleConfirmCheckout(); // Invoke handleConfirmCheckout function
   };
 
   return (
@@ -25,13 +24,13 @@ const Checkout = ({ shippingDetails, totalPrice, handleConfirmCheckout }) => {
 };
 
 Checkout.propTypes = {
-  shippingDetails: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired
-  }).isRequired,
-  totalPrice: PropTypes.number.isRequired,
-  handleConfirmCheckout: PropTypes.func.isRequired
+    shippingDetails: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired
+    }).isRequired,
+    totalPrice: PropTypes.number.isRequired,
+    handleConfirmCheckout: PropTypes.func.isRequired // Corrected prop name
 };
 
 export default Checkout;

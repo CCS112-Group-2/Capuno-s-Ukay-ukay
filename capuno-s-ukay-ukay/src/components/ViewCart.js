@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Checkout from './Checkout'; 
+import Checkout from './Checkout';
 
-const ViewCart = ({ cartItems, handleRemoveFromCart, handleCheckout }) => {
+const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
   const [shippingDetails, setShippingDetails] = useState({
     name: '',
     address: '',
     email: ''
   });
 
-  const [showCheckout, setShowCheckout] = useState(false); 
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,21 +27,22 @@ const ViewCart = ({ cartItems, handleRemoveFromCart, handleCheckout }) => {
 
   const handleCheckoutClick = () => {
     if (shippingDetails.name && shippingDetails.address && shippingDetails.email) {
-      setShowCheckout(true); 
+      setShowCheckout(true);
     } else {
       alert('Please fill in all shipping details.');
     }
   };
 
   const handleConfirmCheckout = () => {
-    
-    handleCheckout({ shippingDetails, totalPrice: calculateTotalPrice(), cartItems });
+    if (window.confirm('Are you sure you want to proceed with the checkout?')) {
+      setShowCheckout(true);
+    }
   };
 
   return (
     <div>
       <center>
-        {!showCheckout ? ( 
+        {!showCheckout ? (
           <>
             {cartItems.length === 0 ? (
               <p>Your cart is empty</p>
@@ -91,10 +92,10 @@ const ViewCart = ({ cartItems, handleRemoveFromCart, handleCheckout }) => {
             )}
           </>
         ) : (
-          <Checkout 
-            shippingDetails={shippingDetails} 
-            totalPrice={calculateTotalPrice()} 
-            handleConfirmCheckout={handleConfirmCheckout} 
+          <Checkout
+            shippingDetails={shippingDetails}
+            totalPrice={calculateTotalPrice()}
+            handleConfirmCheckout={handleConfirmCheckout} // Remove the extra curly braces
           />
         )}
       </center>
@@ -111,8 +112,7 @@ ViewCart.propTypes = {
       quantity: PropTypes.number.isRequired
     })
   ).isRequired,
-  handleRemoveFromCart: PropTypes.func.isRequired,
-  handleCheckout: PropTypes.func.isRequired
+  handleRemoveFromCart: PropTypes.func.isRequired
 };
 
 export default ViewCart;
