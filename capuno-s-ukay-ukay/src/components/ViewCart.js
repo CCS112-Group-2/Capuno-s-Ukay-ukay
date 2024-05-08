@@ -29,12 +29,12 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
     if (shippingDetails.name && shippingDetails.address && shippingDetails.email) {
       setShowCheckout(true);
     } else {
-      alert('Please fill in all shipping details.');
+      alert('Please enter all shipping information.');
     }
   };
 
   const handleConfirmCheckout = () => {
-    if (window.confirm('Are you sure you want to proceed with the checkout?')) {
+    if (window.confirm('Do you really want to continue checking out?')) {
       setShowCheckout(true);
     }
   };

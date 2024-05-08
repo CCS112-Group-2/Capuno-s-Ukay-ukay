@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Checkout = ({ shippingDetails, totalPrice, handleConfirmCheckout }) => {
   const handleConfirm = () => {
-    handleConfirmCheckout(); // Invoke handleConfirmCheckout function
+    handleConfirmCheckout(); 
   };
 
   return (
@@ -30,7 +30,7 @@ Checkout.propTypes = {
       email: PropTypes.string.isRequired
     }).isRequired,
     totalPrice: PropTypes.number.isRequired,
-    handleConfirmCheckout: PropTypes.func.isRequired // Corrected prop name
+    handleConfirmCheckout: PropTypes.func.isRequired 
 };
 
 export default Checkout;
