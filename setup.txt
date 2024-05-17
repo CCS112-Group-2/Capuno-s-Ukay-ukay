@@ -1,0 +1,31 @@
+backend
+
+db schema ccs112
+
+-- Create the products table
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL
+);
+
+-- Insert data into the products table
+INSERT INTO products (name, description, price) VALUES
+    ('Beany Hat', 'A warm and stylish hat', 15.00),
+    ('Cap', 'A trendy cap for sunny days', 25.00),
+    ('Sunglasses', 'Classic shades for a cool look', 12.00),
+    ('Hoodie', 'Comfy and cozy hoodie', 30.00),
+    ('Jacket', 'Stylish jacket to keep you warm', 40.00),
+    ('T-Shirt', 'Casual and comfortable tee', 15.00),
+    ('Underwear', 'Essential everyday underwear', 8.00),
+    ('Shorts', 'Cool and breathable shorts', 20.00),
+    ('Pants', 'Versatile and stylish pants', 35.00),
+    ('Shoes', 'Sleek and comfortable footwear', 50.00);
+
+
+php artisan serve
+
+frontend
+
+npm start
