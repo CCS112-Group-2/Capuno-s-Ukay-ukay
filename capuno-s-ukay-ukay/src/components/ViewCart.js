@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Checkout from './Checkout';
+import OrderSummary from './OrderSummary';
 
 const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
   const [shippingDetails, setShippingDetails] = useState({
@@ -10,6 +11,7 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
   });
 
   const [showCheckout, setShowCheckout] = useState(false);
+  const [showOrderSummary, setShowOrderSummary] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +24,7 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
       const numericPrice = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
       totalPrice += numericPrice * item.quantity;
     });
-    return totalPrice.toFixed(2);
+    return totalPrice;
   };
 
   const handleCheckoutClick = () => {
@@ -34,9 +36,18 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
   };
 
   const handleConfirmCheckout = () => {
-    if (window.confirm('Do you really want to continue checking out?')) {
+    if (window.confirm('Do you want to confirm checking out?')) {
+      setShowOrderSummary(true);
       setShowCheckout(true);
+    }else{
+      setShowCheckout(false);
+      setShowOrderSummary(false);
     }
+  };
+
+  const handleCancel = () => {
+    setShippingDetails({ name: '', address: '', email: '' });
+    setShowCheckout(false);
   };
 
   return (
@@ -49,8 +60,8 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
             ) : (
               <>
                 <h2>View Cart</h2>
-                <ul className="product-card-body">
-                  <li className="list-group-item justify-content-md-center">
+                <ul className="product-card-body list-group col-sm-8">
+                  <li className="list-group-item">
                     <div className="row">
                       <b className="col-sm">Name</b>
                       <b className="col-sm">Price</b>
@@ -72,8 +83,8 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
                 <p>Total Price: ${calculateTotalPrice()}</p>
                 <div>
                   <h3>Shipping Details</h3>
-                  <form>
-                    <div className="form-group">
+                  <form className='col-sm-8'>
+                    <div className="form-group ">
                       <label>Name</label>
                       <input type="text" className="form-control" name="name" value={shippingDetails.name} onChange={handleInputChange} />
                     </div>
@@ -92,11 +103,18 @@ const ViewCart = ({ cartItems, handleRemoveFromCart }) => {
             )}
           </>
         ) : (
-          <Checkout
+            
+          (!showOrderSummary ? (<><Checkout
             shippingDetails={shippingDetails}
+            cartItems={cartItems}
             totalPrice={calculateTotalPrice()}
             handleConfirmCheckout={handleConfirmCheckout} 
-          />
+            handleCancel={handleCancel}
+          /></>):(<OrderSummary
+            shippingDetails={shippingDetails}
+            cartItems={cartItems}
+            totalPrice={calculateTotalPrice()}
+            />))
         )}
       </center>
     </div>
