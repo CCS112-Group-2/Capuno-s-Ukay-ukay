@@ -28,4 +28,5 @@ php artisan serve
 
 frontend
 
+npm install
 npm start
