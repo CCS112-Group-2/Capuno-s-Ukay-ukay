@@ -38,7 +38,12 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
             <h1>Product List</h1>
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</button>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger">Sign Out</button>
+            </form>
         </div>
+        
         <table id="productsTable" class="table table-bordered">
             <thead class="table-dark">
                 <tr>
