@@ -57,7 +57,7 @@ const OrderSummary = ({ shippingDetails, cartItems, totalPrice }) => {
       {/* Total Price */}
       <div>
         <h3>Total Price: ${totalPrice}</h3>
-        <button className="btn btn-primary" onClick={() => window.location.href = 'http://localhost:3000/'}>Go Home</button>
+        <button className="btn btn-primary" onClick={() => window.location.href = 'http://localhost:3000/shopping'}>Go Home</button>
         </div>
     </div>
   );
