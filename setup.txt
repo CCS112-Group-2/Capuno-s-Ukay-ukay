@@ -26,6 +26,8 @@ INSERT INTO products (name, description, price) VALUES
 
 php artisan serve
 
+http://127.0.0.1:8000/api/manage
+
 frontend
 
 npm install
